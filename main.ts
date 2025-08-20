@@ -36,6 +36,7 @@ function main() {
       console.log(output);
     } else if (option === "h") {
       const [newInput, output] = historicCalculation(calculations);
+      console.log(newInput);
       console.log(output);
       calculations.push({ input: newInput, output: output });
     } else if (option === "q") {
@@ -143,26 +144,26 @@ function getHistoricInput(input: Input): Input {
         "): "
     )
   );
-  const amount = prompt(
-    "What is the loan amount? " + "(" + input.amount + "): "
+  const amount = Number(
+    prompt("What is the loan amount? " + "(" + input.amount + "): ")
   );
   const currency = prompt(
     "What is the loan currency? " + "(" + input.currency + "): "
   );
-  const base = prompt(
-    "What is the base interest rate? " + "(" + input.base + "): "
+  const base = Number(
+    prompt("What is the base interest rate? " + "(" + input.base + "): ")
   );
-  const margin = prompt(
-    "What is the margin interest rate? " + "(" + input.margin + "): "
+  const margin = Number(
+    prompt("What is the margin interest rate? " + "(" + input.margin + "): ")
   );
   // when user presses enter, blank return from prompt is ""
   const newInput: Input = {
     start: !isNaN(startDate.getTime()) ? startDate : input.start,
     end: !isNaN(endDate.getTime()) ? endDate : input.end,
-    amount: amount ? Number(amount) : input.amount,
+    amount: !isNaN(amount) ? Number(amount) : input.amount,
     currency: currency || input.currency,
-    base: base ? Number(base) : input.base,
-    margin: margin ? Number(margin) : input.margin,
+    base: !isNaN(base) ? Number(base) : input.base,
+    margin: !isNaN(margin) ? Number(margin) : input.margin,
   };
 
   return newInput;
