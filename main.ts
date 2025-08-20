@@ -85,12 +85,32 @@ function defaultCalculation(): [Input, Output] {
 }
 
 function getNewInput(): Input {
-  const startDate = new Date(prompt("What is the start date? (mm/dd/yyyy): "));
-  const endDate = new Date(prompt("What is the end date? (mm/dd/yyyy): "));
-  const amount: number = Number(prompt("What is the loan amount?: "));
+  let startDate = new Date(prompt("What is the start date? (mm/dd/yyyy): "));
+  while (isNaN(startDate.getTime())) {
+    console.log("Invalid selection, please enter a valid date");
+    startDate = new Date(prompt("What is the start date? (mm/dd/yyyy): "));
+  }
+  let endDate = new Date(prompt("What is the end date? (mm/dd/yyyy): "));
+  while (isNaN(endDate.getTime())) {
+    console.log("Invalid selection, please enter a valid date");
+    endDate = new Date(prompt("What is the end date? (mm/dd/yyyy): "));
+  }
+  let amount: number = Number(prompt("What is the loan amount?: "));
+  while (isNaN(amount)) {
+    console.log("Invalid selection, please enter a number");
+    amount = Number(prompt("What is the loan amount?: "));
+  }
   const currency: string = prompt("What is the loan currency?: ");
-  const base: number = Number(prompt("What is the base interest rate?: "));
-  const margin: number = Number(prompt("What is the margin interest rate?: "));
+  let base: number = Number(prompt("What is the base interest rate?: "));
+  while (isNaN(base)) {
+    console.log("Invalid selection, please enter a number");
+    base = Number(prompt("What is the base interest rate?: "));
+  }
+  let margin: number = Number(prompt("What is the margin interest rate?: "));
+  while (isNaN(margin)) {
+    console.log("Invalid selection, please enter a number");
+    margin = Number(prompt("What is the margin interest rate?: "));
+  }
   const input: Input = {
     start: startDate,
     end: endDate,
