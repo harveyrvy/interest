@@ -124,7 +124,9 @@ function getNewInput(): Input {
 }
 
 function getHistoricInput(input: Input): Input {
-  console.log("Type updated input or press Enter to keep it the same:");
+  console.log(
+    "Type updated input or press Enter to keep it the same (invalid entries will use historic input):"
+  );
   const startDate = new Date(
     prompt(
       "What is the start date? (mm/dd/yyyy): " +
